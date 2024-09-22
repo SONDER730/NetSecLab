@@ -16,12 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from apps.authen import views as auth_views
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', views.home, name='home'),  # 首页
-    path('login/', views.login_view, name='login'),  # 登录页面
-    path('competition/', views.competition, name='competition'),  # 竞赛公示
-    path('lab/', views.lab, name='lab'),  # 实验室公示
-    path('guide/', views.guide, name='guide'),  # 使用指南 
+    path('', auth_views.home, name='home'),  # 首页
+    path('tologin/', auth_views.tologin_view, name='tologin'),  # 登录页面
+    path('tologin/login',auth_views.login_view, name='login'),#账号密码输入后的跳转页面
+    path('competition/', auth_views.competition, name='competition'),  # 竞赛公示
+    path('lab/', auth_views.lab, name='lab'),  # 实验室公示
+    path('guide/', auth_views.guide, name='guide'),  # 使用指南
 ]
