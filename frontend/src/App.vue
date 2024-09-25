@@ -1,33 +1,24 @@
 <template>
   <div id="app">
-    <div class="container">
-      <!-- 左侧导航栏 -->
-      <div class="sidebar">
-        <SideBar @navigate="goTo" />
-      </div>
+    <el-container>
+      <!-- 侧边栏 -->
+      <el-aside width="20%">
+        <SideBar />
+      </el-aside>
 
-      <div class="main-container">
-        <!-- 右侧内容区域 -->
-        <el-header class="header">
-          <h2>网站标题</h2>
-        </el-header>
-
-        <el-main class="main">
-          <router-view></router-view> <!-- 动态加载内容 -->
-        </el-main>
-
-        <el-footer class="footer">
-          <span>底部信息 © 2024</span>
-        </el-footer>
-      </div>
-    </div>
+      <!-- 主内容区域 -->
+      <el-main>
+        <router-view /> <!-- 动态加载内容 -->
+      </el-main>
+    </el-container>
   </div>
 </template>
 
 <script>
-import SideBar from './components/SideBar.vue'; // 确保路径正确
+import SideBar from './components/SideBar.vue'; // 导入 SideBar 组件
 
 export default {
+  name: 'App',
   components: {
     SideBar, // 注册 SideBar 组件
   },
@@ -35,11 +26,6 @@ export default {
     return {
       isLoggedIn: false, // 根据需要设置登录状态
     };
-  },
-  methods: {
-    goTo(page) {
-      this.$router.push({ name: page }); // 执行路由跳转
-    },
   },
 };
 </script>
@@ -54,40 +40,28 @@ html, body {
   height: 100%;
 }
 
-.container {
-  display: flex;
-  height: 100%;
+.el-container {
+  height: 100vh; /* 使用视口高度，使容器占满整个屏幕 */
 }
 
-.sidebar {
-  background-color: #fff;
-  border-right: 1px solid #e4e4e4;
-  height: 100%;
-  padding: 20px;
-}
-
-.main-container {
-  margin: 10px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.header {
-  background-color: #409eff;
-  color: white;
+.el-aside {
+  background-color: white;
+  color: #333;
   text-align: center;
-  padding: 15px;
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  margin: 0px;
 }
 
-.main {
-  flex: 1;
+.el-main {
+  background-color: #E9EEF3;
+  color: #333;
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
   padding: 20px;
-}
-
-.footer {
-  background-color: #f5f7fa;
   text-align: center;
-  padding: 10px;
+  line-height: 160px;
 }
 </style>

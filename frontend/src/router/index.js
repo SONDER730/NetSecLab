@@ -1,25 +1,24 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import Vue from 'vue';
+import Router from 'vue-router';
+import InfoView from '@/views/InfoView.vue';
+import AnnounceView from '@/views/AnnounceView.vue';
+import LoginView from '@/views/LoginView.vue';
+import GuideView from '@/views/GuideView.vue';
+import UserView from "@/views/UserView.vue";
+import UserMessage from "@/views/UserMessage.vue";
 
-// 导入你的页面组件
-import Home from '../App.vue';
-import Info from '../components/Info.vue';
-import Announcement from '../components/Announcement.vue';
-import Login from '../components/Login.vue';
-import Guide from '../components/Guide.vue';
+Vue.use(Router);
 
-// 配置路由
-const routes = [
-  { path: '/', redirect: '/Info' }, // 默认重定向到 Info
-  { path: '/Info', name: 'Info', component: Info }, // 信息展示
-  { path: '/Announcement', name: 'Announcement', component: Announcement }, // 竞赛公示
-  { path: '/Login', name: 'Login', component: Login }, // 登录
-  { path: '/Guide', name: 'Guide', component: Guide } // 使用指南
-];
-
-// 创建路由实例
-const router = createRouter({
-  history: createWebHistory(),
-  routes, // 将配置的路由传递给路由实例
+export default new Router({
+  routes: [
+    { path: '/',component: InfoView},
+    { path: '/info', component: InfoView },
+    { path: '/user',component:UserView},
+    { path: '/usermessage',component:UserMessage},
+    { path: '/announcement', component: AnnounceView },
+    { path: '/login', component: LoginView },
+    { path: '/guide', component: GuideView },
+    { path: '*', redirect: '/InfoView' } // 默认重定向到信息展示页面
+  ],
+  mode: 'history'
 });
-
-export default router;
