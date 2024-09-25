@@ -2,7 +2,7 @@
   <div id="app">
     <el-container>
       <!-- 侧边栏 -->
-      <el-aside width="20%">
+      <el-aside width="17%">
         <SideBar :isLoggedIn="isLoggedIn" :userRole="userRole"/>
       </el-aside>
 

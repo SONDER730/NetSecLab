@@ -93,27 +93,60 @@ export default {
   height: 100vh;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #f5f5f5;
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+  backdrop-filter: blur(5px); /* 背景模糊效果 */
+  border-radius: 12px;
+  //box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* 较大的阴影 */
+  position: relative;
+  z-index: 1;
 }
 
 h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
   color: #409EFF;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1); /* 添加文字阴影 */
 }
 
 .login-tabs {
   width: 400px;
-  }
+  background-color: #fff; /* 背景颜色 */
+  border-radius: 8px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1); /* 更大的阴影 */
+  padding: 20px;
+}
 
 .login-form {
-  background-color: #fff;
-  padding: 40px 40px 20px 20px;
-  border-radius: 8px;
-  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9; /* 浅灰色背景 */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1); /* 适中的阴影 */
+  border: 1px solid #e0e0e0; /* 边框颜色 */
 }
 
 .el-form-item {
-  margin-bottom: 20px;
+  margin-bottom: 25px; /* 表单项间隔更大 */
 }
+
+.el-button {
+  width: 100%;
+  height: 45px;
+  font-size: 1.1rem; /* 按钮文字大小 */
+  background-color: #409eff;
+  color: white;
+  border-radius: 6px;
+}
+
+.el-button:hover {
+  background-color: #66b1ff; /* 按钮悬停颜色 */
+}
+
+
+
+/* 调整背景模糊效果 */
+body {
+  overflow: hidden; /* 防止滚动条出现 */
+}
+
 </style>
+
