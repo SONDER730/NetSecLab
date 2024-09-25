@@ -4,17 +4,22 @@ import InfoView from '@/views/InfoView.vue';
 import AnnounceView from '@/views/AnnounceView.vue';
 import LoginView from '@/views/LoginView.vue';
 import GuideView from '@/views/GuideView.vue';
-import UserView from "@/views/UserView.vue";
-import UserMessage from "@/views/UserMessage.vue";
-
+import StuView from "@/views/StuView.vue";
+import TeacherView from "@/views/TeacherView.vue";
+import Profile  from "@/components/Profile.vue";
+import StuProfile from "@/views/StuProfile.vue";
+import TeaProfile from "@/views/TeaProfile.vue";
 Vue.use(Router);
 
 export default new Router({
   routes: [
-    { path: '/',component: InfoView},
+    { path: '/',redirect:'/info'},
     { path: '/info', component: InfoView },
-    { path: '/user',component:UserView},
-    { path: '/usermessage',component:UserMessage},
+    { path: '/studentInfo',component:StuProfile},
+    { path: '/teacherInfo',component:TeaProfile},
+    { path: '/student',component:StuView},
+    { path: '/teacher',component:TeacherView},
+    { path: '/Profile',component:Profile},
     { path: '/announcement', component: AnnounceView },
     { path: '/login', component: LoginView },
     { path: '/guide', component: GuideView },

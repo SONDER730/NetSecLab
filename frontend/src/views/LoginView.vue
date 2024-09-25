@@ -4,7 +4,7 @@
       <!-- 学生登录 -->
       <el-tab-pane label="学生登录" name="student">
         <el-form ref="studentLoginForm" :model="studentLoginForm" label-width="80px" class="login-form">
-          <el-form-item label="用户名">
+          <el-form-item label="学号">
             <el-input v-model="studentLoginForm.username" placeholder="请输入学生用户名"></el-input>
           </el-form-item>
           <el-form-item label="密码">
@@ -19,7 +19,7 @@
       <!-- 教师登录 -->
       <el-tab-pane label="教师登录" name="teacher">
         <el-form ref="teacherLoginForm" :model="teacherLoginForm" label-width="80px" class="login-form">
-          <el-form-item label="用户名">
+          <el-form-item label="工号">
             <el-input v-model="teacherLoginForm.username" placeholder="请输入教师用户名"></el-input>
           </el-form-item>
           <el-form-item label="密码">
@@ -55,21 +55,25 @@ export default {
   methods: {
     // Tab 点击处理
     handleTabClick(tab) {
-      console.log('切换到: ', tab.name);
+      this.activeTab = tab.name;
     },
-    // 表单提交处理
-    onSubmit(type) {
-      if (type === 'student') {
+    // 表单提交处理，自动判断当前登录身份并处理
+    onSubmit(role) {
+      if (role === 'student') {
         if (this.studentLoginForm.username && this.studentLoginForm.password) {
-          console.log('学生登录信息:', this.studentLoginForm);
           this.$message.success('学生登录成功！');
+          // 处理学生登录后的逻辑
+          this.$emit('login', 'student'); // 向父组件传递身份信息
+          this.$router.push('/studentInfo'); // 跳转到学生界面
         } else {
           this.$message.error('请填写学生用户名和密码');
         }
-      } else if (type === 'teacher') {
+      } else if (role === 'teacher') {
         if (this.teacherLoginForm.username && this.teacherLoginForm.password) {
-          console.log('教师登录信息:', this.teacherLoginForm);
           this.$message.success('教师登录成功！');
+          // 处理教师登录后的逻辑
+          this.$emit('login', 'teacher'); // 向父组件传递身份信息
+          this.$router.push('/TeacherInfo'); // 跳转到教师界面
         } else {
           this.$message.error('请填写教师用户名和密码');
         }
@@ -80,13 +84,15 @@ export default {
 </script>
 
 <style scoped>
+
 .login-view {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   background-color: #f5f5f5;
 }
 
@@ -98,11 +104,11 @@ h1 {
 
 .login-tabs {
   width: 400px;
-}
+  }
 
 .login-form {
   background-color: #fff;
-  padding: 20px;
+  padding: 40px 40px 20px 20px;
   border-radius: 8px;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
 }

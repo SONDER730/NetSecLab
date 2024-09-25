@@ -1,6 +1,6 @@
 <template>
 <el-row class="tac">
-  <el-col :size="1000">
+  <el-col :span="100">
     <h5 class="sidebar-title">北京邮电大学</h5>
     <el-menu
       default-active="$route.path"
@@ -42,11 +42,19 @@
             <i class="el-icon-location"></i>
             <span class="nav-text">个人主页</span>
           </template>
-          <el-menu-item index="/user">
-            <router-link to="/user" class="custom-router-link">用户信息</router-link>
+
+          <!-- 根据角色显示两个个人主页的 item -->
+          <el-menu-item v-if="userRole === 'student'" index="/studentInfo">
+            <router-link to="/studentInfo" class="custom-router-link">个人信息</router-link>
           </el-menu-item>
-          <el-menu-item index="/usermessage">
-            <router-link to="/usermessage" class="custom-router-link">用户通知</router-link>
+          <el-menu-item v-else-if="userRole === 'teacher'" index="/teacherInfo">
+            <router-link to="/teacherInfo" class="custom-router-link">个人信息</router-link>
+          </el-menu-item>
+          <el-menu-item v-if="userRole === 'student'" index="/student">
+            <router-link to="/student" class="custom-router-link">个人应用</router-link>
+          </el-menu-item>
+          <el-menu-item v-else-if="userRole === 'teacher'" index="/teacher">
+            <router-link to="/teacher" class="custom-router-link">个人应用</router-link>
           </el-menu-item>
         </el-submenu>
 
@@ -64,21 +72,36 @@
 
 <script>
   export default {
+    props: ['isLoggedIn', 'userRole'],
+      watch: {
+      // 监听 isLoggedIn 和 userRole 的变化，并调用更新方法
+        isLoggedIn(newVal) {
+          this.updateMenu();
+        },
+        userRole(newVal) {
+          this.updateMenu();
+      }
+      },
     methods: {
+
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
-      }
+      },
+      updateMenu() {
+      // 当 isLoggedIn 或 userRole 发生变化时自动重新渲染
+      console.log('更新导航栏，当前登录状态:', this.isLoggedIn, '当前角色:', this.userRole);
+    },
     }
   }
 </script>
 
 <style scoped>
+
 /* 标题样式 */
 .sidebar-title {
-  display: flex;
   text-align: center;
   font-size: 1.5rem;
   color: #333;
