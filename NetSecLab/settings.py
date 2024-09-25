@@ -37,7 +37,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "apps.authen",
+    "More_apps.authen",
+    "More_apps.competition_student",
+    "More_apps.competition_teacher",
+    "More_apps.competition_announcement",
+    "More_apps.guide",
+    "More_apps.lab",
 ]
 
 MIDDLEWARE = [
@@ -77,9 +82,9 @@ WSGI_APPLICATION = "NetSecLab.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "user",
+        "NAME": "database",
         "USER": "root",
-        "PASSWORD": "000000",
+        "PASSWORD": "bupt",
         "HOST": "127.0.0.1",
         "PORT": "3306",
     }
