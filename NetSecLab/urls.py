@@ -25,4 +25,9 @@ urlpatterns = [
     path('competition/', auth_views.competition, name='competition'),  # 竞赛公示
     path('lab/', auth_views.lab, name='lab'),  # 实验室公示
     path('guide/', auth_views.guide, name='guide'),  # 使用指南
+    path('register/student/', views.register_student, name='student_register'),
+    path('register/teacher/', views.register_teacher, name='teacher_register'),
+    path('success/', views.success, name='success'),
+path('teacher_home/', views.teacher_home, name='teacher_home'),
+path('student_home/', views.student_home, name='student_home'),
 ]
