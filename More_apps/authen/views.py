@@ -35,3 +35,37 @@ def lab(request):
 
 def guide(request):
     return render(request, 'guide.html')
+def register_student(request):
+    if request.method == 'POST':
+        form = StudentRegistrationForm(request.POST)
+        if form.is_valid():
+            student = form.save(commit=False)
+            student.password = make_password(form.cleaned_data['password'])  # 密码加密
+            student.save()
+            messages.success(request, '学生注册成功！')
+            return redirect('login')  # 重定向到登录页面
+    else:
+        form = StudentRegistrationForm()
+
+    return render(request, 'student_register.html', {'form': form})
+
+
+def register_teacher(request):
+    if request.method == 'POST':
+        form = TeacherRegistrationForm(request.POST)
+        if form.is_valid():
+            teacher = form.save(commit=False)
+            teacher.password = make_password(form.cleaned_data['password'])  # 密码加密
+            teacher.save()
+            messages.success(request, '教师注册成功！')
+            return redirect('login')  # 重定向到登录页面
+    else:
+        form = TeacherRegistrationForm()
+
+    return render(request, 'teacher_register.html', {'form': form})
+def success(request):
+    return render(request, 'success.html')
+def student_home(request):
+    return render(request, 'student_home.html')
+def teacher_home(request):
+    return render(request, 'teacher_home.html')
