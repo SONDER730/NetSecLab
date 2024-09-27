@@ -1,117 +1,178 @@
 <template>
-<el-row class="tac">
-  <el-col :span="100">
-    <h5 class="sidebar-title">北京邮电大学</h5>
-    <el-menu
-      default-active="$route.path"
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
-      background-color="#fff"
-      text-color="#333"
-      active-text-color="#409EFF"
-    >
+  <header class="navbar">
+    <div class="navbar-container" :style="{ height: '40px' }">
+      <!-- 左侧 LOGO 区域 -->
+      <div class="logo">
+        <img src="@/assets/logo.png" alt="Logo" />
+        <span class="logo-text"></span>
+      </div>
 
-      <!-- 信息展示 -->
-      <el-menu-item index="/info">
-        <router-link to="/info" class="custom-router-link">
-          <i class="el-icon-menu"></i>
-          <span class="nav-text">信息展示</span>
-        </router-link>
-      </el-menu-item>
+      <!-- 中间导航菜单 -->
+      <nav class="nav-links">
+        <ul>
+          <li><router-link to="/">首页</router-link></li>
+          <li><router-link to="/info">信息展示</router-link></li>
+          <li><router-link to="/announcement">竞赛指南</router-link></li>
+          <li><router-link to="/guide">使用指南</router-link></li>
+        </ul>
+      </nav>
 
-    <!-- 竞赛公示 -->
-      <el-menu-item index="/announcement">
-        <router-link to="/announcement" class="custom-router-link">
-          <i class="el-icon-menu"></i>
-          <span class="nav-text">竞赛公示</span>
-        </router-link>
-      </el-menu-item>
+      <!-- 右侧按钮 -->
+      <div class="nav-actions">
+        <!-- 如果未登录，显示登录和注册按钮 -->
+        <template v-if="!isLoggedIn">
+          <el-button type="primary" size="small" class="login-btn" @click="onLoginClick">登录</el-button>
+          <el-button type="primary" size="small" class="login-btn" @click="SignupClick">注册</el-button>
+        </template>
+        <!-- 如果已登录，显示用户下拉菜单 -->
+        <template v-else>
+          <el-dropdown>
+            <el-button type="primary" size="small" class="user-btn">
+              {{ userRole === 'student' ? '学生' : '教师' }}主页<i class="el-icon-arrow-down el-icon--right"></i>
+            </el-button>
+            <el-dropdown-menu slot="dropdown">
+              <!-- 使用 router-link 跳转到不同的应用中心 -->
+              <el-dropdown-item>
+                <router-link :to="userRole === 'student' ? '/student' : '/teacher'">应用中心</router-link>
+              </el-dropdown-item>
 
-    <!-- 登录前显示 登录 -->
-      <el-menu-item v-if="!isLoggedIn" index="/login">
-        <router-link to="/login" class="custom-router-link">
-          <i class="el-icon-user"></i>
-          <span class="nav-text">登录</span>
-        </router-link>
-      </el-menu-item>
-
-        <!-- 个人主页 -->
-        <el-submenu v-else index="3" class="no-arrow-submenu">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span class="nav-text">个人主页</span>
-          </template>
-
-          <!-- 根据角色显示两个个人主页的 item -->
-          <el-menu-item v-if="userRole === 'student'" index="/studentInfo">
-            <router-link to="/studentInfo" class="custom-router-link">个人信息</router-link>
-          </el-menu-item>
-          <el-menu-item v-else-if="userRole === 'teacher'" index="/teacherInfo">
-            <router-link to="/teacherInfo" class="custom-router-link">个人信息</router-link>
-          </el-menu-item>
-          <el-menu-item v-if="userRole === 'student'" index="/student">
-            <router-link to="/student" class="custom-router-link">个人应用</router-link>
-          </el-menu-item>
-          <el-menu-item v-else-if="userRole === 'teacher'" index="/teacher">
-            <router-link to="/teacher" class="custom-router-link">个人应用</router-link>
-          </el-menu-item>
-        </el-submenu>
-
-        <!-- 使用指南 -->
-        <el-menu-item index="/guide">
-          <router-link to="/guide" class="custom-router-link">
-            <i class="el-icon-setting"></i>
-            <span class="nav-text">使用指南</span>
-          </router-link>
-        </el-menu-item>
-    </el-menu>
-  </el-col>
-</el-row>
+              <!-- 退出登录按钮 -->
+              <el-dropdown-item divided @click="onLogoutClick">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </template>
+      </div>
+    </div>
+  </header>
 </template>
 
 <script>
-  export default {
-    props: ['isLoggedIn', 'userRole'],
-      watch: {
-      // 监听 isLoggedIn 和 userRole 的变化，并调用更新方法
-        isLoggedIn(newVal) {
-          this.updateMenu();
-        },
-        userRole(newVal) {
-          this.updateMenu();
-      }
-      },
-    methods: {
-
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      updateMenu() {
-      // 当 isLoggedIn 或 userRole 发生变化时自动重新渲染
-      console.log('更新导航栏，当前登录状态:', this.isLoggedIn, '当前角色:', this.userRole);
+export default {
+  props: {
+    isLoggedIn: {
+      type: Boolean,
+      default: false,
     },
-    }
+    userRole: {
+      type: String,
+      default: '',
+    },
+  },
+  methods: {
+    onLoginClick() {
+      this.$router.push('/login'); // 跳转到登录页面
+    },
+    SignupClick() {
+      this.$router.push('/signup'); // 跳转到注册页面
+    },
+    onLogoutClick() {
+      this.$emit('logout'); // 触发父组件的登出逻辑
+    },
   }
+};
 </script>
 
 <style scoped>
-
-/* 标题样式 */
-.sidebar-title {
-  text-align: center;
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 40px;
-  font-weight: bold;
+/* 样式保持不变 */
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #001f3f;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
-.custom-router-link {
-  text-decoration: none; /* 移除下划线 */
-  color: inherit; /* 继承字体颜色 */
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+}
+
+.logo {
   display: flex;
   align-items: center;
+}
+
+.logo img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.nav-links ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links ul li {
+  margin-right: 20px;
+}
+
+.nav-links ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 1.0rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links ul li a:hover {
+  color: #00d9ff;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+}
+
+.login-btn {
+  background-color: #4A6CF7;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+}
+
+.login-btn:hover {
+  background-color: #007bff;
+}
+
+.user-btn {
+  background-color: #4A6CF7;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+}
+
+.user-btn:hover {
+  background-color: #007bff;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .logo-text {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex;
+  }
 }
 </style>

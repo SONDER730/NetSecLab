@@ -6,24 +6,23 @@ import LoginView from '@/views/LoginView.vue';
 import GuideView from '@/views/GuideView.vue';
 import StuView from "@/views/StuView.vue";
 import TeacherView from "@/views/TeacherView.vue";
-import Profile  from "@/components/Profile.vue";
-import StuProfile from "@/views/StuProfile.vue";
-import TeaProfile from "@/views/TeaProfile.vue";
+// import Profile  from "@/components/Profile.vue";
+import Home from "@/views/Home.vue";
+import SignupView from "@/views/SignupView.vue";
 Vue.use(Router);
 
 export default new Router({
   routes: [
-    { path: '/',redirect:'/info'},
+    { path: '/',component: Home},
     { path: '/info', component: InfoView },
-    { path: '/studentInfo',component:StuProfile},
-    { path: '/teacherInfo',component:TeaProfile},
     { path: '/student',component:StuView},
     { path: '/teacher',component:TeacherView},
-    { path: '/Profile',component:Profile},
+    // { path: '/Profile',component:Profile},
     { path: '/announcement', component: AnnounceView },
     { path: '/login', component: LoginView },
+    { path: '/signup', component: SignupView },
     { path: '/guide', component: GuideView },
-    { path: '*', redirect: '/InfoView' } // 默认重定向到信息展示页面
+    { path: '*', redirect: '/info' } // 默认重定向到信息展示页面
   ],
   mode: 'history'
 });

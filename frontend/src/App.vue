@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <el-container>
-      <!-- 侧边栏 -->
-      <el-aside width="17%">
-        <SideBar :isLoggedIn="isLoggedIn" :userRole="userRole"/>
-      </el-aside>
+      <!-- 顶部导航栏 -->
+      <el-header>
+        <SideBar :isLoggedIn="isLoggedIn" :userRole="userRole" @logout="handleLogout"/>
+      </el-header>
 
       <!-- 主内容区域 -->
       <el-main>
-        <router-view @login="handleLogin"/> <!-- 动态加载内容 -->
+        <router-view @login="handleLogin" /> <!-- 动态加载内容 -->
       </el-main>
     </el-container>
   </div>
@@ -20,29 +20,55 @@ import SideBar from './components/SideBar.vue'; // 导入 SideBar 组件
 export default {
   name: 'App',
   components: {
-    SideBar, // 注册 SideBar 组件
+    SideBar,
   },
   data() {
     return {
-      isLoggedIn: false, // 根据需要设置登录状态
-      userRole: '', // 用户角色（'student' 或 'teacher'）
+      isLoggedIn: false,
+      userRole: '',
     };
   },
-
+  watch: {
+    isLoggedIn(newVal) {
+      if (newVal) {
+        console.log('用户已登录');
+      } else {
+        console.log('用户已登出');
+      }
+    },
+    userRole(newVal) {
+      if (newVal) {
+        console.log(`用户角色为: ${newVal}`);
+      }
+    },
+  },
   methods: {
-    handleLogin(role) {
-      this.isLoggedIn = true;
-      this.userRole = role; // 设置用户身份
-      this.$router.push('/info');
-    }
+    handleLogin(role, isLogin) {
+      this.isLoggedIn = isLogin; // 更新登录状态
+      this.userRole = role; // 更新用户角色
+    },
+    handleLogout() {
+      this.isLoggedIn = false;
+      this.userRole = '';
+      this.$router.push('/login'); // 跳转到登录页
+    },
   },
 };
 </script>
 
 <style>
-html, body {
+body, html {
   margin: 0;
-  height: 100%;
+  padding: 0;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.home-container {
+  margin-top: 0;
+  padding-top: 0;
 }
 
 #app {
@@ -50,22 +76,18 @@ html, body {
 }
 
 .el-container {
-  height: 100vh; /* 使用视口高度，使容器占满整个屏幕 */
-}
-
-.el-aside {
-  background-color: white;
-  color: #333;
-  text-align: center;
-  //display: flex;
-  align-items: center; /* 垂直居中 */
-  justify-content: center; /* 水平居中 */
-  padding: 20px;
+  //height: 100vh; /* 使用视口高度，使容器占满整个屏幕 */
 }
 
 .el-main {
+  display: block;
+  flex: 1;
+  flex-basis: auto;
+  overflow: hidden; /* 隐藏溢出部分 */
+  box-sizing: border-box;
   background-color: #E9EEF3;
-  color: #333;
-  padding: 20px;
+  //color: #333;
+  padding: 0px !important;/* 去掉 padding */
+  margin: 0;  /* 去掉 margin */
 }
 </style>
