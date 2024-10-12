@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from More_apps.authen import views as auth_views
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -23,11 +23,11 @@ urlpatterns = [
     path('tologin/', auth_views.tologin_view, name='tologin'),  # 登录页面
     path('tologin/login',auth_views.login_view, name='login'),#账号密码输入后的跳转页面
     path('competition/', auth_views.competition, name='competition'),  # 竞赛公示
-    path('lab/', auth_views.lab, name='lab'),  # 实验室公示
-    path('guide/', auth_views.guide, name='guide'),  # 使用指南
-    path('register/student/', views.register_student, name='student_register'),
-    path('register/teacher/', views.register_teacher, name='teacher_register'),
-    path('success/', views.success, name='success'),
-path('teacher_home/', views.teacher_home, name='teacher_home'),
-path('student_home/', views.student_home, name='student_home'),
+    path('lab/', include("More_apps.lab.urls")),  # 实验室公示
+    path('guide/',include("More_apps.guide.urls")),  # 使用指南
+    path('register/student/', auth_views.register_student, name='student_register'),
+    path('register/teacher/', auth_views.register_teacher, name='teacher_register'),
+    path('success/', auth_views.success, name='success'),
+    path('teacher_home/', auth_views.teacher_home, name='teacher_home'),
+    path('student_home/', auth_views.student_home, name='student_home'),
 ]

@@ -30,11 +30,7 @@ def login_view(request):
 def competition(request):
     return render(request, 'competition.html')
 
-def lab(request):
-    return render(request, 'lab.html')
 
-def guide(request):
-    return render(request, 'guide.html')
 def register_student(request):
     if request.method == 'POST':
         form = StudentRegistrationForm(request.POST)
