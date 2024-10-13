@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
+from django.template import Engine
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -60,7 +62,7 @@ ROOT_URLCONF = "NetSecLab.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, 'apps', 'templates')],
+        "DIRS": [os.path.join(BASE_DIR, 'More_apps', 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -81,10 +83,10 @@ WSGI_APPLICATION = "NetSecLab.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "database",
+        "ENGINE":"django.db.backends.mysql",
+        "NAME": "user",
         "USER": "root",
-        "PASSWORD": "bupt",
+        "PASSWORD": "000000",
         "HOST": "127.0.0.1",
         "PORT": "3306",
     }
