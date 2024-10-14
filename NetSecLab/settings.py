@@ -82,9 +82,9 @@ WSGI_APPLICATION = "NetSecLab.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "database",
+        "NAME": "test",
         "USER": "root",
-        "PASSWORD": "bupt",
+        "PASSWORD": "root",
         "HOST": "127.0.0.1",
         "PORT": "3306",
     }

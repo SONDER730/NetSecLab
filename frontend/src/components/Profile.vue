@@ -5,7 +5,7 @@
     <div v-if="userRole === 'student'">
       <h3>学生信息</h3>
       <p>姓名: {{ user.name }}</p>
-      <p>学号: {{ user.studentId }}</p>
+      <p>学号: {{ user.student-id }}</p>
       <!-- 更多学生信息 -->
     </div>
 
