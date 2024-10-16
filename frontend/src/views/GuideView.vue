@@ -10,7 +10,7 @@
       text-color="#fff"
       active-text-color="#409eff"
     >
-      <el-menu-item index="signup_com">
+      <el-menu-item index="signup_competition">
         <h2>如何报名</h2>
       </el-menu-item>
       <el-menu-item index="competitions">
@@ -29,7 +29,7 @@
 
 
       <!-- 竞赛报名部分 -->
-      <div v-if="activeMenu === 'signup_com'">
+      <div v-if="activeMenu === 'signup_competition'">
         <div>
           <p>这里是竞赛报名的步骤</p>
         </div>
@@ -60,7 +60,7 @@
 export default {
   data(){
     return{
-      activeMenu: 'signup_com',
+      activeMenu: 'signup_competition',
     }
   },
    methods: {
