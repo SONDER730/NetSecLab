@@ -11,13 +11,13 @@
       active-text-color="#409eff"
     >
       <el-menu-item index="signup_com">
-        如何报名
+        <h2>如何报名</h2>
       </el-menu-item>
       <el-menu-item index="competitions">
-        查看竞赛信息
+        <h2>查看竞赛信息</h2>
       </el-menu-item>
       <el-menu-item index="contact">
-        联系我们
+        <h2>联系我们</h2>
       </el-menu-item>
     </el-menu>
 
@@ -84,6 +84,7 @@ export default {
   width: 250px;
   background-color: #001f3f;
   color: #fff;
+  text-align: center;
 }
 
 .content-container {
@@ -98,7 +99,12 @@ h1 {
   color: #409EFF;
 }
 
-.main{
+h2{
+  font-size:1rem;
+  color:white;
+}
 
- }
+.el-menu-item:hover {
+  background-color: #409eff !important;
+}
 </style>
