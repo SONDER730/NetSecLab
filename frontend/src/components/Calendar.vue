@@ -2,14 +2,12 @@
   <div class="calendar-container">
     <!-- 竞赛日历 -->
     <full-calendar
-      :plugins="[dayGridPlugin, timeGridPlugin]"
-      :events="events"
+      :options="calendarOptions"
       :header="{
         left: 'prev,next today',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
       }"
-      :initial-view="'dayGridMonth'"
       height="600px"
     ></full-calendar>
   </div>
@@ -26,6 +24,16 @@ export default {
   },
   data() {
     return {
+      calendarOptions: {
+        plugins: [ dayGridPlugin ],
+        initialView: 'dayGridMonth',
+        events: [
+            { title: '网络安全竞赛', start: '2024-09-15', end: '2024-09-18' },
+            { title: '编程马拉松', start: '2024-09-20', end: '2024-09-22' }
+        ] // 示例事件
+      },
+
+
       events: [
         { title: '网络安全竞赛', start: '2024-09-15', end: '2024-09-18' },
         { title: '编程马拉松', start: '2024-09-20', end: '2024-09-22' }
