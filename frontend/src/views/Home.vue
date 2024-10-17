@@ -3,7 +3,6 @@
     <!-- 这是根元素，包裹所有内容 -->
     <div class="home-container">
       <!-- 第一个div：欢迎界面 -->
-<<<<<<< HEAD
       <div class="carousel">
         <section class="welcome-section">
           <div class="welcome-text">
@@ -146,55 +145,6 @@
                 </li>
               </ul>
             </div>
-=======
-      <section class="welcome-section">
-        <div class="welcome-text">
-          <h1>欢迎来到北京邮电大学网络空间安全实验平台</h1>
-          <p>我们致力于为网络空间安全的研究和实践提供坚实的技术支持，培养卓越的网络安全人才。</p>
-        </div>
-      </section>
-
-      <!-- 第二个div：实验室滚动图片 -->
-      <section class="lab-carousel-section">
-        <h2>实验室展示</h2>
-        <!-- 轮播图展示图片 -->
-        <el-carousel :interval="4000" type="card" height="300px">
-          <el-carousel-item v-for="(image, index) in carouselImages" :key="index">
-            <img :src="image" alt="实验室展示图片" class="carousel-image" />
-          </el-carousel-item>
-        </el-carousel>
-      </section>
-
-      <!-- 第三个div：特征介绍 -->
-      <section class="features-section">
-        <h2 class="feature-black">我们的特色</h2>
-        <div class="features-container">
-          <div class="feature">
-            <h3>高质量实验设备</h3>
-            <p>我们拥有最先进的实验设施，确保学生能够在真实的环境中进行实验操作。</p>
-          </div>
-          <div class="feature">
-            <h3>行业合作</h3>
-            <p>与多个知名企业合作，提供丰富的实习机会和实际项目训练。</p>
-          </div>
-          <div class="feature">
-            <h3>顶级师资力量</h3>
-            <p>由国内外知名教授和专家组成的师资团队，提供专业的指导与支持。</p>
-          </div>
-        </div>
-        <div class="features-container">
-          <div class="feature">
-            <h3>高质量实验设备</h3>
-            <p>我们拥有最先进的实验设施，确保学生能够在真实的环境中进行实验操作。</p>
-          </div>
-          <div class="feature">
-            <h3>行业合作</h3>
-            <p>与多个知名企业合作，提供丰富的实习机会和实际项目训练。</p>
-          </div>
-          <div class="feature">
-            <h3>顶级师资力量</h3>
-            <p>由国内外知名教授和专家组成的师资团队，提供专业的指导与支持。</p>
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
           </div>
         </div>
       </section>
@@ -228,23 +178,16 @@
 
         <!-- 右侧图片部分 -->
         <div class="competition-image">
-<<<<<<< HEAD
           <img style="width: 60%;" src="https://nic.bupt.edu.cn/__local/1/5D/B1/2A9079DC9FB25A68B71B1940BB8_117EBE37_4FF14.png" alt="Competition" />
-=======
-          <img src="@/assets/f-pic3.png" alt="Competition" />
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
         </div>
       </section>
     </div>
 
     <!-- 页脚 -->
     <section class="home-footer">
-<<<<<<< HEAD
       <!-- <div class="home-footer-item">
         <p>联系我们</p>
       </div> -->
-=======
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
       <div>
         <p>© 2024 北京邮电大学网络空间安全实验平台. 版权所有.</p>
       </div>
@@ -253,7 +196,6 @@
 </template>
 <script>
 export default {
-<<<<<<< HEAD
   name: "HomePage",
   data () {
     return {
@@ -377,62 +319,24 @@ export default {
   position: relative;
 }
 
-=======
-  name: "Home",
-  data() {
-    return {
-      // 实验室滚动展示图片路径
-      carouselImages: [
-        require('@/assets/banner1.png'),
-        require('@/assets/banner7.jpg'),
-        require('@/assets/banner8.jpg'),
-        // 可以继续添加更多图片路径
-      ],
-    };
-  },
-  methods: {
-  // 导航到竞赛公示平台
-  navigateToPlatform() {
-    this.$route.push("/announcement")
-  // window.open("https://example.com/competition-platform", "_blank");
-  },
-  // 导航到竞赛申报页面
-  navigateToApply() {
-    this.$route.push("/info")
-  // window.open("https://example.com/competition-apply", "_blank");
-  },
-},
-};
-</script>
-
-<style scoped>
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
 .home-container {
   font-family: 'Arial', sans-serif;
   background-color: #001f3f;
   color: white;
   overflow: hidden;
   padding: 0;
-<<<<<<< HEAD
-
-=======
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
 }
 
 /* 第一个div 样式 */
 .welcome-section {
   padding: 100px 20px;
   text-align: center;
-<<<<<<< HEAD
   /* background-color: #001f3f; */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
-=======
-  background-color: #001f3f;
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
 }
 
 .welcome-text h1 {
@@ -447,12 +351,8 @@ export default {
 /* 第二个div 样式 */
 .lab-carousel-section {
   padding: 50px 20px;
-<<<<<<< HEAD
   background: linear-gradient(to bottom, #001f3f, #ffffff);
   ;
-=======
-  background: linear-gradient(to bottom, #001f3f, #ffffff);;
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
   text-align: center;
 }
 
@@ -469,7 +369,6 @@ export default {
 
 /* 第三个div 样式 */
 .features-section {
-<<<<<<< HEAD
   /* margin-top: 100px; */
   padding: 110px 20px;
   background-color: white;
@@ -480,14 +379,6 @@ export default {
   color: black;
 }
 
-=======
-  padding: 50px 20px;
-  background-color: white;
-}
-.feature-black{
-  color: black;
-}
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
 .features-section h2 {
   font-size: 2rem;
   text-align: center;
@@ -506,7 +397,6 @@ export default {
   background-color: #2C303B;
   padding: 20px;
   border-radius: 8px;
-<<<<<<< HEAD
   position: relative;
   overflow: hidden;
   transition: all 1s;
@@ -559,10 +449,6 @@ export default {
 }
 
 
-=======
-}
-
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
 .feature h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
@@ -571,10 +457,6 @@ export default {
 .feature p {
   font-size: 1rem;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
 /* 第四个div 样式 */
 
 .competition-section {
@@ -584,11 +466,8 @@ export default {
   justify-content: space-between;
   padding: 50px 20px;
   background-color: #001f3f;
-<<<<<<< HEAD
   // background: #000;
   // background: url(https://nic.bupt.edu.cn/images/footer_box01_bg.jpg);
-=======
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
   border-top: 1px solid white;
   color: white;
 }
@@ -631,12 +510,9 @@ export default {
 }
 
 .competition-image {
-<<<<<<< HEAD
   display: flex;
   justify-content: center;
   align-items: center;
-=======
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
   width: 50%;
 
 }
@@ -645,10 +521,6 @@ export default {
   max-width: 100%;
   border-radius: 8px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
 /* 页脚样式 */
 .home-footer {
   padding: 20px 0;
@@ -662,7 +534,6 @@ export default {
   margin: 0;
   font-size: 0.9rem;
 }
-<<<<<<< HEAD
 
 ul{
   list-style: none;
@@ -683,10 +554,3 @@ ul{
   background: url(https://nic.bupt.edu.cn/images/footer_box01_bg.jpg) no-repeat;
 }
 </style>
-=======
-</style>
-
-
-
-
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc

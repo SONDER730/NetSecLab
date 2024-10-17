@@ -2,21 +2,12 @@
   <div id="app">
     <el-container>
       <!-- 顶部导航栏 -->
-<<<<<<< HEAD
       <!-- <el-header> -->
         <SideBar :isLoggedIn="isLoggedIn" :userRole="userRole" @logout="handleLogout"/>
       <!-- </el-header> -->
 
       <!-- 主内容区域 -->
       <el-main :class="{noneNavbar:$route.path !=='/'}">
-=======
-      <el-header>
-        <SideBar :isLoggedIn="isLoggedIn" :userRole="userRole" @logout="handleLogout"/>
-      </el-header>
-
-      <!-- 主内容区域 -->
-      <el-main>
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
         <router-view @login="handleLogin" /> <!-- 动态加载内容 -->
       </el-main>
     </el-container>
@@ -66,12 +57,9 @@ export default {
 </script>
 
 <style>
-<<<<<<< HEAD
 .noneNavbar{
   margin-top: 80px !important;
 }
-=======
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
 body, html {
   margin: 0;
   padding: 0;
@@ -91,11 +79,7 @@ body, html {
 }
 
 .el-container {
-<<<<<<< HEAD
   /* //height: 100vh; 使用视口高度，使容器占满整个屏幕 */
-=======
-  //height: 100vh; /* 使用视口高度，使容器占满整个屏幕 */
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
 }
 
 .el-main {
@@ -105,11 +89,7 @@ body, html {
   overflow: hidden; /* 隐藏溢出部分 */
   box-sizing: border-box;
   background-color: #E9EEF3;
-<<<<<<< HEAD
   /* //color: #333; */
-=======
-  //color: #333;
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
   padding: 0px !important;/* 去掉 padding */
   margin: 0;  /* 去掉 margin */
 }

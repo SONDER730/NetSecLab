@@ -69,24 +69,15 @@
 
 <script>
 import FormContainer from '@/components/FormContainer.vue';
-<<<<<<< HEAD
-=======
-import axios from 'axios';
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
 
 export default {
   name: 'LoginView',
   components: {
-<<<<<<< HEAD
     FormContainer,
-=======
-    FormContainer,  // 注册 FormContainer 组件
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
   },
   data() {
     return {
       loginForm: {
-<<<<<<< HEAD
         role: null, // 默认身份选择为空
         username: '',
         password: '',
@@ -101,52 +92,13 @@ export default {
         // 模拟登录成功，触发 'login' 事件并传递 role 和 isLogin 状态
         this.$emit('login', this.loginForm.role, true);
         this.$router.push('/'); // 登录成功后跳转到首页
-=======
-        role: null,  // 用户身份（student 或 teacher）
-        username: '',  // 账号
-        password: '',  // 密码
-        captcha: ''    // 验证码（可以根据需要）
-      },
-      captchaImageSrc: 'path_to_captcha_image',  // 验证码图片路径
-    };
-  },
-  methods: {
-    async onLogin() {
-      if (this.loginForm.username && this.loginForm.password && this.loginForm.captcha) {
-        try {
-          // 发送 POST 请求到后端 Django API
-          const response = await axios.post('http://127.0.0.1:8000/login/', {
-            user_id: this.loginForm.username,
-            password: this.loginForm.password,
-            role: this.loginForm.role  // 'student' 或 'teacher'
-          });
-
-          // 处理登录成功的响应
-          if (response.status === 200) {
-            this.$emit('login', this.loginForm.role, true);  // 触发登录事件
-            this.$router.push('/');  // 登录成功后跳转到首页
-          }
-        } catch (error) {
-          // 处理后端返回的错误信息
-          if (error.response && error.response.data.error) {
-            this.$message.error(error.response.data.error);  // 显示后端返回的错误信息
-          } else {
-            this.$message.error('登录失败，请检查您的登录信息');
-          }
-        }
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
       } else {
         this.$message.error('请填写完整的登录信息');
       }
     },
     refreshCaptcha() {
-<<<<<<< HEAD
       // 刷新验证码逻辑，重新加载验证码图片
       this.captchaImageSrc = 'path_to_new_captcha_image'; // 根据需要更改为实际逻辑
-=======
-      // 刷新验证码的逻辑
-      this.captchaImageSrc = 'path_to_new_captcha_image';  // 更换验证码图片的逻辑
->>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
     }
   }
 };
