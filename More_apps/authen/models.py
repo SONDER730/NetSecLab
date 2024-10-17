@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 from django.db import models
 
@@ -17,3 +18,29 @@ class TeacherInfo(models.Model):
     tea_password = models.CharField(max_length=50)  # 教师密码
 
 
+=======
+from django.db import models
+
+# Create your models here.
+
+
+from django.db import models
+
+class StudentInfo(models.Model):
+    student_id = models.CharField(max_length=20)  # 保留 student_id
+    email = models.EmailField(max_length=100)  # 添加 email 字段
+    password = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.student_id
+
+
+
+class TeacherInfo(models.Model):
+    teacher_id = models.CharField(max_length=20)  # 保留 teacher_id
+    email = models.EmailField(max_length=100)  # 添加 email 字段
+    password = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.teacher_id
+>>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc

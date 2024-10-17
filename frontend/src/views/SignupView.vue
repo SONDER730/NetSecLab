@@ -20,6 +20,7 @@
         </el-form-item>
 
         <!-- 账号 -->
+<<<<<<< HEAD
         <el-form-item label="账号" prop="username">
           <el-input
             v-model="signupForm.username"
@@ -29,6 +30,25 @@
             size="large"
           />
         </el-form-item>
+=======
+        <el-form-item v-if="signupForm.role === 'student'" label="学号" prop="student_id">
+  <el-input
+    v-model="signupForm.student_id"
+    placeholder="请输入学号"
+    class="input-field"
+    size="large"
+  />
+</el-form-item>
+
+<el-form-item v-if="signupForm.role === 'teacher'" label="教工号" prop="teacher_id">
+  <el-input
+    v-model="signupForm.teacher_id"
+    placeholder="请输入教工号"
+    class="input-field"
+    size="large"
+  />
+</el-form-item>
+>>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
 
         <!-- 密码 -->
         <el-form-item label="密码" prop="password">
@@ -82,14 +102,24 @@
 <script>
 import FormContainer from '@/components/FormContainer.vue';
 
+<<<<<<< HEAD
 export default {
   name: 'SignupView',
   components: {
     FormContainer,
+=======
+import axios from 'axios';
+
+export default {
+  name: 'SignupView',
+  components: {
+    FormContainer,  // 注册 FormContainer 组件
+>>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
   },
   data() {
     return {
       signupForm: {
+<<<<<<< HEAD
         role: 'student', // 默认身份选择为学生
         username: '',
         password: '',
@@ -99,6 +129,21 @@ export default {
       rules: {
         username: [
           { required: true, message: '请输入账号', trigger: 'blur' },
+=======
+        role: 'student',  // 默认是学生身份
+        student_id: '',  // 学生注册时使用的字段
+        teacher_id: '',  // 教师注册时使用的字段
+        password: '',
+        confirmPassword: '',  // 确认密码
+        email: ''
+      },
+      rules: {
+        student_id: [
+          { required: true, message: '请输入学号', trigger: 'blur' },
+        ],
+        teacher_id: [
+          { required: true, message: '请输入教工号', trigger: 'blur' },
+>>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
@@ -119,7 +164,10 @@ export default {
     };
   },
   methods: {
+<<<<<<< HEAD
     // 校验确认密码
+=======
+>>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
     validateConfirmPassword(rule, value, callback) {
       if (value !== this.signupForm.password) {
         callback(new Error('两次输入的密码不一致'));
@@ -127,11 +175,43 @@ export default {
         callback();
       }
     },
+<<<<<<< HEAD
     onSignup() {
       this.$refs.signupForm.validate((valid) => {
         if (valid) {
           console.log('注册信息:', this.signupForm);
           // 注册逻辑
+=======
+    async onSignup() {
+      this.$refs.signupForm.validate(async (valid) => {
+        if (valid) {
+          try {
+            const payload = {
+              role: this.signupForm.role,
+              password: this.signupForm.password,
+              email: this.signupForm.email,
+            };
+
+            // 根据身份选择相应的 ID 字段
+            if (this.signupForm.role === 'student') {
+              payload.student_id = this.signupForm.student_id;
+            } else if (this.signupForm.role === 'teacher') {
+              payload.teacher_id = this.signupForm.teacher_id;
+            }
+
+            const response = await axios.post('http://127.0.0.1:8000/api/register/', payload);
+            if (response.status === 201) {
+              this.$message.success('注册成功！');
+              this.$router.push('/login');
+            }
+          } catch (error) {
+            if (error.response && error.response.data.error) {
+              this.$message.error('注册失败: ' + JSON.stringify(error.response.data.error));
+            } else {
+              this.$message.error('注册失败，请稍后重试');
+            }
+          }
+>>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
         } else {
           console.log('表单验证失败');
           return false;

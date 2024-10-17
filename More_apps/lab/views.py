@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+<<<<<<< HEAD
 def lab(request):
     return render(request, 'lab.html')
 
@@ -15,3 +16,5 @@ def class3(request):
 
 def class4(request):
     return render(request, 'class4.html')
+=======
+>>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc

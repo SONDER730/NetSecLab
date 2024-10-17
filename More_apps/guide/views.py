@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+<<<<<<< HEAD
 def guide(request):
     return render(request, 'guide.html')
 
@@ -21,3 +22,5 @@ def consult(request):
 
 def feedback(request):
     return render(request, 'feedback.html')
+=======
+>>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
