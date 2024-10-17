@@ -279,6 +279,7 @@ export default {
 <style scoped>
 .main-container {
   display: flex;
+  height: 100vh; /* 设置整个容器占满视口高度 */
 }
 
 .el-menu-vertical {
