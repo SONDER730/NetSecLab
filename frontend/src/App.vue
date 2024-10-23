@@ -2,12 +2,12 @@
   <div id="app">
     <el-container>
       <!-- 顶部导航栏 -->
-      <el-header>
+      <!-- <el-header> -->
         <SideBar :isLoggedIn="isLoggedIn" :userRole="userRole" @logout="handleLogout"/>
-      </el-header>
+      <!-- </el-header> -->
 
       <!-- 主内容区域 -->
-      <el-main>
+      <el-main :class="{noneNavbar:$route.path !=='/'}">
         <router-view @login="handleLogin" /> <!-- 动态加载内容 -->
       </el-main>
     </el-container>
@@ -57,6 +57,9 @@ export default {
 </script>
 
 <style>
+.noneNavbar{
+  margin-top: 80px !important;
+}
 body, html {
   margin: 0;
   padding: 0;
@@ -76,7 +79,7 @@ body, html {
 }
 
 .el-container {
-  //height: 100vh; /* 使用视口高度，使容器占满整个屏幕 */
+  /* //height: 100vh; 使用视口高度，使容器占满整个屏幕 */
 }
 
 .el-main {
@@ -86,7 +89,7 @@ body, html {
   overflow: hidden; /* 隐藏溢出部分 */
   box-sizing: border-box;
   background-color: #E9EEF3;
-  //color: #333;
+  /* //color: #333; */
   padding: 0px !important;/* 去掉 padding */
   margin: 0;  /* 去掉 margin */
 }

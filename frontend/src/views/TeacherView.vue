@@ -37,44 +37,18 @@
             <p>系统通知: {{ systemNotifications }}</p>
           </el-card>
         </div>
-
-        <div v-if="!editMode">
-          <div class="teacher-info">
-            <h2>教师个人信息</h2>
-            <el-card>
-              <el-descriptions column="1" border>
-                <el-descriptions-item label="姓名">{{ teacherInfo.name }}</el-descriptions-item>
-                <el-descriptions-item label="学院">{{ teacherInfo.department }}</el-descriptions-item>
-                <el-descriptions-item label="工号">{{ teacherInfo.teacher_id }}</el-descriptions-item>
-                <el-descriptions-item label="联系方式">{{ teacherInfo.contact }}</el-descriptions-item>
-                <el-descriptions-item label="邮箱">{{ teacherInfo.email }}</el-descriptions-item>
-              </el-descriptions>
-            </el-card>
-            <el-button type="primary" @click="editMode = true">修改信息</el-button>
-          </div>
-        </div>
-
-        <div v-else>
-          <h2>修改教师信息</h2>
-          <el-form :model="teacherInfo" label-width="80px">
-            <el-form-item label="姓名">
-              <el-input v-model="teacherInfo.name"></el-input>
-            </el-form-item>
-            <el-form-item label="学院">
-              <el-input v-model="teacherInfo.department"></el-input>
-            </el-form-item>
-            <el-form-item label="工号">
-              <el-input v-model="teacherInfo.teacher_id" ></el-input>
-            </el-form-item>
-            <el-form-item label="联系方式">
-              <el-input v-model="teacherInfo.contact"></el-input>
-            </el-form-item>
-            <el-form-item label="邮箱">
-              <el-input v-model="teacherInfo.email"></el-input>
-            </el-form-item>
-            <el-button type="primary" @click="submitTeacherInfo">提交</el-button>
-            <el-button @click="editMode = false">取消</el-button>
-          </el-form>
+        <div class="teacher-info">
+          <h2>教师个人信息</h2>
+          <el-card>
+            <el-descriptions column="1" border>
+              <el-descriptions-item label="姓名">{{ teacherInfo.name }}</el-descriptions-item>
+              <el-descriptions-item label="学院">{{ teacherInfo.department }}</el-descriptions-item>
+              <el-descriptions-item label="职位">{{ teacherInfo.position }}</el-descriptions-item>
+              <el-descriptions-item label="工号">{{ teacherInfo.id }}</el-descriptions-item>
+              <el-descriptions-item label="联系方式">{{ teacherInfo.phone }}</el-descriptions-item>
+              <el-descriptions-item label="邮箱">{{ teacherInfo.email }}</el-descriptions-item>
+            </el-descriptions>
+          </el-card>
         </div>
       </div>
 
@@ -147,14 +121,11 @@
 </template>
 
 <script>
-import axios from 'axios'; // 引入 axios
-
 export default {
   data() {
     return {
       // 当前活动的 tab，默认是教师信息
       activeMenu: 'teacherInfo',
-      editMode: false,
 
       // 通知数量
       pendingStudents: 5,
@@ -163,11 +134,12 @@ export default {
 
       // 教师信息
       teacherInfo: {
-        name: '',
-        department: '',
-        teacher_id: '',
-        contact: '',
-        email: ''
+        name: '张老师',
+        department: '计算机科学学院',
+        position: '副教授',
+        id: 'T123456',
+        phone: '12345678901',
+        email: 'teacher@example.com'
       },
 
       // 学生管理数据
@@ -198,72 +170,31 @@ export default {
       searchQuery: ''
     };
   },
-  created() {
-    this.fetchTeacherInfo(); // 组件创建时获取学生信息
-  },
   methods: {
     handleMenuSelect(index) {
       this.activeMenu = index;
     },
-
-    // 获取教师信息
-    fetchTeacherInfo() {
-      axios.get('/api/teacher-info/')
-        .then(response => {
-          // 假设返回的数据是一个数组，取第一个学生的信息
-          if (response.data.length > 0) {
-            this.profileForm = response.data[0];
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching teacher info:', error);
-        });
-    },
-
-    submitTeacherInfo() {
-    console.log('Submitting teacher info:', this.teacherInfo);
-      axios.post('/api/teacher-info/', this.teacherInfo)  // 使用 POST 方法
-    .then(response => {
-      this.$message.success('信息提交成功');
-      this.editMode = false;
-      this.fetchTeacherInfo(); // 提交后重新获取数据以更新视图
-    })
-    .catch(error => {
-      this.$message.error('提交失败: ' + (error.response?.data?.message || error.message));
-    });
-    },
-
-    // 学生管理操作
     approveStudent(student) {
-      this.$message.success(`已批准学生：${student.name}`);
+      console.log('批准学生:', student.name);
     },
     rejectStudent(student) {
-      this.$message.error(`已拒绝学生：${student.name}`);
+      console.log('拒绝学生:', student.name);
     },
-
-    // 竞赛管理操作
     reviewMaterials(competition) {
-      this.$message.info(`查看竞赛材料：${competition.name}`);
+      console.log('查看材料:', competition.name);
     },
     confirmProcess(competition) {
-      this.$message.success(`确认竞赛流程：${competition.name}`);
+      console.log('确认流程:', competition.name);
     },
-
-    // 报告与证书操作
-    viewReport(report) {
-      this.$message.info(`查看总结：${report.studentName}的${report.competition}总结`);
+    viewReport(student) {
+      console.log('查看总结:', student.studentName);
     },
-    viewCertificate(report) {
-      this.$message.info(`查看证书：${report.studentName}的${report.competition}证书`);
+    viewCertificate(student) {
+      console.log('查看证书:', student.studentName);
     },
-
-    // PDF生成操作
-    generatePDF(pdf) {
-      this.$message.success(`已生成PDF：${pdf.studentName}的${pdf.competition}证明`);
+    generatePDF(student) {
+      console.log('生成PDF:', student.studentName);
     }
-  },
-  mounted() {
-    this.fetchTeacherInfo();
   }
 };
 </script>
@@ -308,7 +239,7 @@ export default {
   margin-top: 20px;
 }
 
-.el-form-item {
-  margin-bottom: 15px;
+.el-button {
+  margin-left: 10px;
 }
 </style>

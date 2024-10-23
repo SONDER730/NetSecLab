@@ -1,3 +1,28 @@
+<<<<<<< HEAD
+from myapp.oauth.models import StudentInfo, TeacherInfo
+from django import forms
+class StudentRegistrationForm(forms.ModelForm):
+    class Meta:
+        model = StudentInfo
+        fields = ['name', 'student_id', 'password', 'major']
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
+
+class TeacherRegistrationForm(forms.ModelForm):
+    class Meta:
+        model = TeacherInfo
+        fields = ['name', 'teacher_id', 'password']
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
+
+class LoginForm(forms.Form):
+            user_id = forms.CharField(label='User ID', max_length=20)
+            password = forms.CharField(widget=forms.PasswordInput())
+            user_type = forms.ChoiceField(choices=[('student', 'Student'), ('teacher', 'Teacher')],
+                                          widget=forms.RadioSelect)
+=======
 from django import forms
 from .models import StudentInfo, TeacherInfo
 import re
@@ -61,3 +86,4 @@ class TeacherRegistrationForm(forms.ModelForm):
         if password and confirm_password and password != confirm_password:
             raise ValidationError("两次输入的密码不一致。")
         return cleaned_data
+>>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc

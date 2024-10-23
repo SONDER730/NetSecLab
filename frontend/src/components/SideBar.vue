@@ -1,5 +1,6 @@
 <template>
-  <header class="navbar">
+  
+  <header :class="{navbar:true,accNavbar:$route.path !=='/'}" >
     <div class="navbar-container" :style="{ height: '40px' }">
       <!-- 左侧 LOGO 区域 -->
       <div class="logo">
@@ -73,16 +74,36 @@ export default {
 </script>
 
 <style scoped>
+  .noneNavbar{
+    display: block !important;
+    height: 60px;
+  }
+.accNavbar{
+ background-color: #001f3f !important; 
+}
 /* 样式保持不变 */
 .navbar {
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #001f3f;
+  /* background-color: #001f3f; */
+  /* background-color: rgba(0, 31, 63, .6); 50% 透明度的白色 */
+  background: -webkit-linear-gradient(bottom,  rgba(0, 31, 63, 0.2), rgba(0, 31, 63, 0.3), rgba(0, 31, 63, 0.4), rgba(0, 31, 63, 0.5), rgba(0, 31, 63, 0.6), rgba(0, 31, 63, 0.7), rgba(0, 31, 63, 0.8)); 
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
+  padding: 10px 0;
+}
+.navbar::before{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 8px;
+  background-color: #013f7d;
 }
 
 .navbar-container {
@@ -122,13 +143,14 @@ export default {
 .nav-links ul li a {
   color: #ffffff;
   text-decoration: none;
-  font-weight: 400;
+  /* font-weight: 400; */
   font-size: 1.0rem;
   transition: color 0.3s ease;
+  font-weight: bold;
 }
 
 .nav-links ul li a:hover {
-  color: #00d9ff;
+  color: #013f7d;
 }
 
 .nav-actions {

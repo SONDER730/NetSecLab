@@ -1,5 +1,18 @@
 from django.db import models
 
+<<<<<<< HEAD
+class TeacherInfo(models.Model):
+    tea_name = models.CharField(max_length=100, verbose_name='姓名')
+    tea_id = models.CharField(max_length=20, unique=True, verbose_name='工号')
+    tea_password = models.CharField(max_length=128, verbose_name='密码')
+
+    def __str__(self):
+        return self.tea_name
+
+    class Meta:
+        verbose_name = '教师信息'
+        verbose_name_plural = '教师信息'
+=======
 # Create your models here.
 from django.db import models
 from django.contrib.auth.models import User
@@ -33,3 +46,4 @@ class CompetitionApplication(models.Model):
 
     def __str__(self):
         return f'{self.competition.name} - {self.student.name} ({self.status})'
+>>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc

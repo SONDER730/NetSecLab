@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+from django.shortcuts import render
+
+# Create your views here.
+=======
 # Create your views here.
 from django.http import HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
@@ -62,3 +67,4 @@ def teacher_view_files(request):
         return HttpResponseForbidden("You are not allowed to view this page")
     files = StudentFileUpload.objects.all()  # 显示所有学生上传的文件
     return render(request, 'view_files.html', {'files': files})
+>>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc

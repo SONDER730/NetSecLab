@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+from django.shortcuts import render
+
+# Create your views here.
+=======
 from django.views.decorators.csrf import csrf_exempt
 
 from .forms import StudentInfoForm, StudentFileUploadForm
@@ -80,3 +85,4 @@ def student_upload_file(request):
 def student_uploaded_files(request):
     files = StudentFileUpload.objects.filter(student=request.user)  # 仅显示当前学生上传的文件
     return render(request, 'uploaded_files.html', {'files': files})
+>>>>>>> 83f1edfc5ffa8e9f876eb602fbd78e4443d636dc
