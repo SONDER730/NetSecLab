@@ -18,9 +18,11 @@
       <el-menu-item index="competitionManagement">
         竞赛管理
       </el-menu-item>
+      <!--
       <el-menu-item index="reportCertificates">
         报告与证书
       </el-menu-item>
+      -->
       <el-menu-item index="generatePDF">
         生成PDF证明
       </el-menu-item>
@@ -68,7 +70,6 @@
           </el-table-column>
         </el-table>
       </div>
-
       <!-- 竞赛管理模块 -->
       <div v-if="activeMenu === 'competitionManagement'">
         <h2>竞赛管理</h2>
@@ -86,6 +87,7 @@
       </div>
 
       <!-- 报告与证书模块 -->
+      <!--
       <div v-if="activeMenu === 'reportCertificates'">
         <h2>报告与证书</h2>
         <el-input v-model="searchQuery" placeholder="按学生、竞赛项目、时间进行搜索"></el-input>
@@ -101,6 +103,7 @@
           </el-table-column>
         </el-table>
       </div>
+      -->
 
       <!-- 生成PDF证明模块 -->
       <div v-if="activeMenu === 'generatePDF'">
@@ -117,7 +120,18 @@
         </el-table>
       </div>
     </div>
+    <!-- 弹窗 -->
+<el-dialog title="查看材料" :visible.sync="dialogVisible" width="50%">
+<p>姓名：{{selectedStudent.name}}</p>
+  <p>学号：{{selectedStudent.studentID}}</p>
+  <p>竞赛项目：{{selectedStudent.competition}}</p>
+  <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="downloadMaterial">下载材料</el-button>
+        <el-button @click="dialogVisible = false">关闭</el-button>
+      </span>
+</el-dialog>
   </div>
+
 </template>
 
 <script>
@@ -167,7 +181,12 @@ export default {
       ],
 
       // 搜索查询
-      searchQuery: ''
+      searchQuery: '',
+      //弹窗可见性
+      dialogVisible: false,
+      //选中的竞赛材料（用于在弹窗中展示）
+      //selectedCompetition: {},
+      selectedStudent: {},
     };
   },
   methods: {
@@ -180,8 +199,12 @@ export default {
     rejectStudent(student) {
       console.log('拒绝学生:', student.name);
     },
-    reviewMaterials(competition) {
-      console.log('查看材料:', competition.name);
+    reviewMaterials(student) {
+      //console.log('查看材料:', student.studentID);
+      //this.selectedCompetition = competition;//更新选中的竞赛材料
+      //this.dialogVisible = true;//打开弹窗
+      this.selectedStudent = student;//更新选中的竞赛材料
+      this.dialogVisible = true;//打开弹窗
     },
     confirmProcess(competition) {
       console.log('确认流程:', competition.name);
@@ -194,9 +217,23 @@ export default {
     },
     generatePDF(student) {
       console.log('生成PDF:', student.studentName);
+    },
+    downloadMaterial() {
+      const content = `姓名：${this.selectedStudent.name}
+                       学号：${this.selectedStudent.studentID}
+                       竞赛项目：${this.selectedStudent.competition}`;
+      const blob = new Blob([content], {type: 'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'material.txt'; // 文件名可以根据需要更改
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url); // 释放内存
     }
   }
-};
+}
 </script>
 
 <style scoped>
