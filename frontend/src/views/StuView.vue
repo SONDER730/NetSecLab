@@ -107,7 +107,9 @@
       <div v-if="activeMenu === 'myCompetitions'">
         <div class="competition-header">
           <h2>我的竞赛</h2>
-
+          <button class="signupbutton" @click="show">我要报名</button>
+            <Dialog :showDialog="showDialog=isDialogVisible"  @update:showDialog="value => isDialogVisible = value">
+            </Dialog>
           <el-button size="small" type="success" @click="toggleCalendar">{{ showCalendar ? '返回' : '竞赛日历' }}</el-button>
         </div>
 
@@ -191,13 +193,18 @@
 
 <script>
 import Calendar from '@/components/Calendar.vue';
+import Dialog from '@/components/SignupDialog.vue';
 
 export default {
   components: {
-    Calendar
+    Calendar,
+    Dialog,
   },
+
+
   data() {
     return {
+      isDialogVisible:false,
       activeMenu: 'personalInfo',
       editMode: false,
       profileForm: {
@@ -233,6 +240,9 @@ export default {
     };
   },
   methods: {
+    show(){
+        this.isDialogVisible = true;
+      },
     handleMenuSelect(index) {
       this.activeMenu = index;
     },
@@ -312,5 +322,22 @@ export default {
   background-color: white;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   text-align: center;
+}
+
+.signupbutton{
+  background-color:royalblue;
+  color:white;
+  border: none;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 23px;
+  padding: 6px 10px;
+  transition: background-color 0.3s;
+}
+
+.signupbutton:hover {
+  background-color: deepskyblue; /* 鼠标悬停时按钮背景颜色 */
 }
 </style>
