@@ -18,9 +18,11 @@
       <el-menu-item index="competitionManagement">
         竞赛管理
       </el-menu-item>
+      <!--
       <el-menu-item index="reportCertificates">
         报告与证书
       </el-menu-item>
+      -->
       <el-menu-item index="generatePDF">
         生成PDF证明
       </el-menu-item>
@@ -86,6 +88,7 @@
       </div>
 
       <!-- 报告与证书模块 -->
+      <!--
       <div v-if="activeMenu === 'reportCertificates'">
         <h2>报告与证书</h2>
         <el-input v-model="searchQuery" placeholder="按学生、竞赛项目、时间进行搜索"></el-input>
@@ -101,6 +104,7 @@
           </el-table-column>
         </el-table>
       </div>
+      -->
 
       <!-- 生成PDF证明模块 -->
       <div v-if="activeMenu === 'generatePDF'">
