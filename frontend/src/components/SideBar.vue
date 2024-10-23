@@ -14,7 +14,7 @@
           <li><router-link to="/">首页</router-link></li>
           <li><router-link to="/info">信息展示</router-link></li>
           <li><router-link to="/announcement">竞赛指南</router-link></li>
-          <li><router-link to="/guide">使用指南</router-link></li>
+          <!-- <li><router-link to="/guide">使用指南</router-link></li> -->
         </ul>
       </nav>
 
