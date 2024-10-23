@@ -15,9 +15,9 @@
       <el-menu-item index="myCompetitions">
         我的竞赛
       </el-menu-item>
-      <el-menu-item index="certificateDownload">
+      <!--<el-menu-item index="certificateDownload">
         证书下载
-      </el-menu-item>
+      </el-menu-item> -->
       <el-menu-item index="paymentOrders">
         缴费订单
       </el-menu-item>
@@ -107,6 +107,7 @@
       <div v-if="activeMenu === 'myCompetitions'">
         <div class="competition-header">
           <h2>我的竞赛</h2>
+
           <el-button size="small" type="success" @click="toggleCalendar">{{ showCalendar ? '返回' : '竞赛日历' }}</el-button>
         </div>
 
@@ -134,6 +135,7 @@
       </div>
 
       <!-- 证书下载部分 -->
+      <!--
       <div v-if="activeMenu === 'certificateDownload'">
         <h2>证书下载</h2>
         <el-table :data="certificateData" stripe style="width: 100%;">
@@ -146,7 +148,7 @@
           </el-table-column>
         </el-table>
       </div>
-
+      -->
       <!-- 缴费订单部分 -->
       <div v-if="activeMenu === 'paymentOrders'">
         <h2>缴费订单</h2>
