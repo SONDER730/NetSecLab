@@ -55,7 +55,7 @@
 
       <!-- 第三个div：特征介绍 -->
       <section class="features-section">
-        <div>
+        <!-- <div>
           <h2 class="feature-black">我们的特色</h2>
           <div class="features-container">
             <div class="feature">
@@ -109,7 +109,7 @@
               <div class="line4 line"></div>
             </div>
           </div>
-        </div>
+        </div> -->
         <br>   <br>   <br>   <br>
         <div class="stastistical-part2">
           <!-- section-seperator -->

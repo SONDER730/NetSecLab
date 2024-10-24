@@ -28,6 +28,7 @@
 
     <!-- 右侧内容展示 -->
     <div class="content-container">
+      <div  class="my-competitions" >
       <!-- 个人信息部分 -->
       <div v-if="activeMenu === 'personalInfo'">
         <h2>个人信息</h2>
@@ -104,10 +105,9 @@
       </div>
 
       <!-- 我的竞赛部分 -->
-      <div v-if="activeMenu === 'myCompetitions'">
+      <div  v-if="activeMenu === 'myCompetitions'">
         <div class="competition-header">
-          <h2>我的竞赛</h2>
-          <button class="signupbutton" @click="show">我要报名</button>
+          <h2 style="color: #58DAFE;">我的竞赛</h2> 
             <Dialog :showDialog="showDialog=isDialogVisible"  @update:showDialog="value => isDialogVisible = value">
             </Dialog>
           <el-button size="small" type="success" @click="toggleCalendar">{{ showCalendar ? '返回' : '竞赛日历' }}</el-button>
@@ -129,6 +129,10 @@
               </template>
             </el-table-column>
           </el-table>
+          <div class="signupbutton-box">
+            <button class="signupbutton" @click="show">我要报名</button>
+          </div>
+       
         </div>
 
         <div v-if="showCalendar">
@@ -160,7 +164,7 @@
           <el-table-column prop="name" label="竞赛名称"></el-table-column>
           <el-table-column prop="peopleCount" label="人数"></el-table-column>
           <el-table-column prop="price" label="价格"></el-table-column>
-          <el-table-column label="操作">
+          <el-table-column width="220"  label="操作">
             <template slot-scope="scope">
               <el-button size="small" type="info" @click="handleViewInvoice(scope.row.id)">查看发票</el-button>
               <el-button size="small" type="primary" @click="handleReissueInvoice(scope.row.id)">重新开票</el-button>
@@ -188,6 +192,10 @@
         </el-form>
       </div>
     </div>
+
+
+    </div>
+ 
   </div>
 </template>
 
@@ -297,6 +305,10 @@ export default {
   padding: 20px;
   background-color: white;
   color: black;
+  background: url('@/assets/bg-student.png') no-repeat ;
+  background-position: center center; 
+  background-size: cover; /* 背景图基于容器大小伸缩 */
+  position: relative;
 }
 
 .el-menu-item {
@@ -339,5 +351,23 @@ export default {
 
 .signupbutton:hover {
   background-color: deepskyblue; /* 鼠标悬停时按钮背景颜色 */
+}
+.my-competitions{
+  width: 80%;
+  /* background: #fff; */
+  padding: 10px;
+  border-radius: 15px;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+}
+.my-competitions > div > h2 {
+  color: #58DAFE;
+}
+.signupbutton-box{
+  display: flex;
+  width: 100%;
+  justify-content: end;
 }
 </style>
